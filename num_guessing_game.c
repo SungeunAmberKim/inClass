@@ -13,22 +13,20 @@
 #include <stdlib.h>
 #include <time.h>
 
-
+int maxNum;
 void playGame();
 void changeMax();
 
 int main()
 {
     FILE *fp;
-    char max[20];
-
+    
     fp = fopen("maxNum.txt", "r");
-    fscanf(fp,"%s", max);
+    fscanf(fp,"%d", &maxNum);
     fclose(fp);
-    int maxNum = atoi(max);
-
     int menu;
     int end = 0;
+
     do
     {
         printf("Press 1 to play a game\n");
@@ -87,7 +85,7 @@ void playGame()
 void changeMax()
 {
     printf("Enter new max: ");
-    scanf("%s", max);
+    scanf("%d", maxNum);
     if(maxNum < 0)
         {
             printf("Please enter positive integer\n");
@@ -96,7 +94,7 @@ void changeMax()
     else
     {
         fp = fopen("maxNum.txt", "w+");
-        fputs(max,fp);
+        fputs(maxNum,fp);
         fclose(fp);
     }
     
