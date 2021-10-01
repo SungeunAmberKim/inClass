@@ -12,12 +12,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
+
 void playGame();
 void changeMax();
-int maxNum = 11;
 
 int main()
 {
+    FILE *fp;
+    char max[20];
+
+    fp = fopen("maxNum.txt", "r");
+    fscanf(fp,"%s", max);
+    fclose(fp);
+    int maxNum = atoi(max);
+
     int menu;
     int end = 0;
     do
@@ -78,12 +87,18 @@ void playGame()
 void changeMax()
 {
     printf("Enter new max: ");
-    scanf("%d", &maxNum);
+    scanf("%s", max);
     if(maxNum < 0)
         {
             printf("Please enter positive integer\n");
             changeMax();
         }
+    else
+    {
+        fp = fopen("maxNum.txt", "w+");
+        fputs(max,fp);
+        fclose(fp);
+    }
     
     
 }
