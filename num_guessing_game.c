@@ -95,9 +95,8 @@ void changeMax()
     {
         FILE *fp1;
         fp1 = fopen("maxNum.txt", "w+");
-        fputs(*maxNum,fp1);
+        fprintf(fp1, "%d", maxNum);
         fclose(fp1);
     }
-    
     
 }
